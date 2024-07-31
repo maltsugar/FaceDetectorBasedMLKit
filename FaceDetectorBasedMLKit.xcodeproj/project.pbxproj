@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B91FE53A2C5A2D8E00A6F768 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE5392C5A2D8E00A6F768 /* AppDelegate.m */; };
+		B91FE53D2C5A2D8E00A6F768 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE53C2C5A2D8E00A6F768 /* SceneDelegate.m */; };
+		B91FE5402C5A2D8E00A6F768 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE53F2C5A2D8E00A6F768 /* ViewController.m */; };
+		B91FE5432C5A2D8E00A6F768 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B91FE5422C5A2D8E00A6F768 /* Base */; };
+		B91FE5452C5A2D9100A6F768 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91FE5442C5A2D9100A6F768 /* Assets.xcassets */; };
+		B91FE5482C5A2D9100A6F768 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B91FE5472C5A2D9100A6F768 /* Base */; };
+		B91FE54B2C5A2D9100A6F768 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE54A2C5A2D9100A6F768 /* main.m */; };
+		B91FE5592C5A2E4800A6F768 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE5522C5A2E4800A6F768 /* FaceViewController.m */; };
+		B91FE55A2C5A2E4800A6F768 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE5542C5A2E4800A6F768 /* MaskView.m */; };
+		B91FE55B2C5A2E4800A6F768 /* MaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91FE5552C5A2E4800A6F768 /* MaskView.xib */; };
+		B91FE55C2C5A2E4800A6F768 /* UIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE5572C5A2E4800A6F768 /* UIUtilities.m */; };
+		B91FE55F2C5A2EED00A6F768 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91FE55E2C5A2EED00A6F768 /* ResultViewController.m */; };
+		D4E012950DE86EEFBF4DFE81 /* Pods_FaceDetectorBasedMLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A1102CCC25F1A7CAB4E0B6 /* Pods_FaceDetectorBasedMLKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		43BA5852C29E6595684B0198 /* Pods-FaceDetectorBasedMLKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceDetectorBasedMLKit.debug.xcconfig"; path = "Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit.debug.xcconfig"; sourceTree = "<group>"; };
+		4BBD4429332A1A0A23DF796E /* Pods-FaceDetectorBasedMLKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceDetectorBasedMLKit.release.xcconfig"; path = "Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit.release.xcconfig"; sourceTree = "<group>"; };
+		80A1102CCC25F1A7CAB4E0B6 /* Pods_FaceDetectorBasedMLKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceDetectorBasedMLKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91FE5352C5A2D8E00A6F768 /* FaceDetectorBasedMLKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceDetectorBasedMLKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91FE5382C5A2D8E00A6F768 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B91FE5392C5A2D8E00A6F768 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B91FE53B2C5A2D8E00A6F768 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		B91FE53C2C5A2D8E00A6F768 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		B91FE53E2C5A2D8E00A6F768 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B91FE53F2C5A2D8E00A6F768 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B91FE5422C5A2D8E00A6F768 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B91FE5442C5A2D9100A6F768 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B91FE5472C5A2D9100A6F768 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B91FE5492C5A2D9100A6F768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B91FE54A2C5A2D9100A6F768 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B91FE5512C5A2E4800A6F768 /* FaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceViewController.h; sourceTree = "<group>"; };
+		B91FE5522C5A2E4800A6F768 /* FaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceViewController.m; sourceTree = "<group>"; };
+		B91FE5532C5A2E4800A6F768 /* MaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskView.h; sourceTree = "<group>"; };
+		B91FE5542C5A2E4800A6F768 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
+		B91FE5552C5A2E4800A6F768 /* MaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaskView.xib; sourceTree = "<group>"; };
+		B91FE5562C5A2E4800A6F768 /* UIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtilities.h; sourceTree = "<group>"; };
+		B91FE5572C5A2E4800A6F768 /* UIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtilities.m; sourceTree = "<group>"; };
+		B91FE55D2C5A2EED00A6F768 /* ResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		B91FE55E2C5A2EED00A6F768 /* ResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B91FE5322C5A2D8E00A6F768 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4E012950DE86EEFBF4DFE81 /* Pods_FaceDetectorBasedMLKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B2E7B9C66EE7B267055E327 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80A1102CCC25F1A7CAB4E0B6 /* Pods_FaceDetectorBasedMLKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B91FE52C2C5A2D8E00A6F768 = {
+			isa = PBXGroup;
+			children = (
+				B91FE5372C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */,
+				B91FE5362C5A2D8E00A6F768 /* Products */,
+				CF867E44B7F23B482BF220D4 /* Pods */,
+				0B2E7B9C66EE7B267055E327 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B91FE5362C5A2D8E00A6F768 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B91FE5352C5A2D8E00A6F768 /* FaceDetectorBasedMLKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B91FE5372C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */ = {
+			isa = PBXGroup;
+			children = (
+				B91FE5582C5A2E4800A6F768 /* FaceDetector */,
+				B91FE5382C5A2D8E00A6F768 /* AppDelegate.h */,
+				B91FE5392C5A2D8E00A6F768 /* AppDelegate.m */,
+				B91FE53B2C5A2D8E00A6F768 /* SceneDelegate.h */,
+				B91FE53C2C5A2D8E00A6F768 /* SceneDelegate.m */,
+				B91FE53E2C5A2D8E00A6F768 /* ViewController.h */,
+				B91FE53F2C5A2D8E00A6F768 /* ViewController.m */,
+				B91FE55D2C5A2EED00A6F768 /* ResultViewController.h */,
+				B91FE55E2C5A2EED00A6F768 /* ResultViewController.m */,
+				B91FE5412C5A2D8E00A6F768 /* Main.storyboard */,
+				B91FE5442C5A2D9100A6F768 /* Assets.xcassets */,
+				B91FE5462C5A2D9100A6F768 /* LaunchScreen.storyboard */,
+				B91FE5492C5A2D9100A6F768 /* Info.plist */,
+				B91FE54A2C5A2D9100A6F768 /* main.m */,
+			);
+			path = FaceDetectorBasedMLKit;
+			sourceTree = "<group>";
+		};
+		B91FE5582C5A2E4800A6F768 /* FaceDetector */ = {
+			isa = PBXGroup;
+			children = (
+				B91FE5512C5A2E4800A6F768 /* FaceViewController.h */,
+				B91FE5522C5A2E4800A6F768 /* FaceViewController.m */,
+				B91FE5532C5A2E4800A6F768 /* MaskView.h */,
+				B91FE5542C5A2E4800A6F768 /* MaskView.m */,
+				B91FE5552C5A2E4800A6F768 /* MaskView.xib */,
+				B91FE5562C5A2E4800A6F768 /* UIUtilities.h */,
+				B91FE5572C5A2E4800A6F768 /* UIUtilities.m */,
+			);
+			path = FaceDetector;
+			sourceTree = "<group>";
+		};
+		CF867E44B7F23B482BF220D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43BA5852C29E6595684B0198 /* Pods-FaceDetectorBasedMLKit.debug.xcconfig */,
+				4BBD4429332A1A0A23DF796E /* Pods-FaceDetectorBasedMLKit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B91FE5342C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B91FE54E2C5A2D9200A6F768 /* Build configuration list for PBXNativeTarget "FaceDetectorBasedMLKit" */;
+			buildPhases = (
+				0DFEE12C1B787BFD8DFC6B37 /* [CP] Check Pods Manifest.lock */,
+				B91FE5312C5A2D8E00A6F768 /* Sources */,
+				B91FE5322C5A2D8E00A6F768 /* Frameworks */,
+				B91FE5332C5A2D8E00A6F768 /* Resources */,
+				BD83554D915717D8EC5DAE54 /* [CP] Embed Pods Frameworks */,
+				B74F596962F56CD28EB56BF1 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FaceDetectorBasedMLKit;
+			productName = FaceDetectorBasedMLKit;
+			productReference = B91FE5352C5A2D8E00A6F768 /* FaceDetectorBasedMLKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B91FE52D2C5A2D8E00A6F768 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					B91FE5342C5A2D8E00A6F768 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = B91FE5302C5A2D8E00A6F768 /* Build configuration list for PBXProject "FaceDetectorBasedMLKit" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B91FE52C2C5A2D8E00A6F768;
+			productRefGroup = B91FE5362C5A2D8E00A6F768 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B91FE5342C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B91FE5332C5A2D8E00A6F768 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B91FE55B2C5A2E4800A6F768 /* MaskView.xib in Resources */,
+				B91FE5452C5A2D9100A6F768 /* Assets.xcassets in Resources */,
+				B91FE5482C5A2D9100A6F768 /* Base in Resources */,
+				B91FE5432C5A2D8E00A6F768 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DFEE12C1B787BFD8DFC6B37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FaceDetectorBasedMLKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B74F596962F56CD28EB56BF1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD83554D915717D8EC5DAE54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FaceDetectorBasedMLKit/Pods-FaceDetectorBasedMLKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B91FE5312C5A2D8E00A6F768 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B91FE55C2C5A2E4800A6F768 /* UIUtilities.m in Sources */,
+				B91FE5402C5A2D8E00A6F768 /* ViewController.m in Sources */,
+				B91FE53A2C5A2D8E00A6F768 /* AppDelegate.m in Sources */,
+				B91FE5592C5A2E4800A6F768 /* FaceViewController.m in Sources */,
+				B91FE54B2C5A2D9100A6F768 /* main.m in Sources */,
+				B91FE55A2C5A2E4800A6F768 /* MaskView.m in Sources */,
+				B91FE53D2C5A2D8E00A6F768 /* SceneDelegate.m in Sources */,
+				B91FE55F2C5A2EED00A6F768 /* ResultViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B91FE5412C5A2D8E00A6F768 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B91FE5422C5A2D8E00A6F768 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B91FE5462C5A2D9100A6F768 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B91FE5472C5A2D9100A6F768 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B91FE54C2C5A2D9100A6F768 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B91FE54D2C5A2D9100A6F768 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B91FE54F2C5A2D9200A6F768 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43BA5852C29E6595684B0198 /* Pods-FaceDetectorBasedMLKit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BJTDMP87P7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zgy.FaceDetectorBasedMLKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B91FE5502C5A2D9200A6F768 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BBD4429332A1A0A23DF796E /* Pods-FaceDetectorBasedMLKit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BJTDMP87P7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zgy.FaceDetectorBasedMLKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B91FE5302C5A2D8E00A6F768 /* Build configuration list for PBXProject "FaceDetectorBasedMLKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B91FE54C2C5A2D9100A6F768 /* Debug */,
+				B91FE54D2C5A2D9100A6F768 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B91FE54E2C5A2D9200A6F768 /* Build configuration list for PBXNativeTarget "FaceDetectorBasedMLKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B91FE54F2C5A2D9200A6F768 /* Debug */,
+				B91FE5502C5A2D9200A6F768 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B91FE52D2C5A2D8E00A6F768 /* Project object */;
+}
