@@ -134,7 +134,12 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
         }
         if (faces.count == 0) {
             //            NSLog(@"On-Device face detector returned no results.");
-            [strongSelf checkFaceStatus:nil rect:CGRectZero];
+            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:0];
+            return;
+        }
+        
+        if (faces.count > 1) {
+            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:(int)faces.count];
             return;
         }
         
@@ -149,7 +154,7 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
             CGRect standardizedRect = rect1;
             
             // 检查人脸状态
-            [strongSelf checkFaceStatus:face rect:standardizedRect];
+            [strongSelf checkFaceStatus:face rect:standardizedRect faceCount:1];
             
             [UIUtilities addRectangle:standardizedRect
                                toView:strongSelf.annotationOverlayView
@@ -159,12 +164,16 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     });
 }
 
-- (void)checkFaceStatus:(MLKFace *)face rect:(CGRect)standardizedRect
+- (void)checkFaceStatus:(MLKFace *)face rect:(CGRect)standardizedRect faceCount:(int)cnt
 {
     BOOL isValid = NO;
     NSString *tip = @"";
     if (!face) {
         tip = @"请将人脸移入框内";
+        if (cnt > 1) {
+            tip = @"检测到多张人脸";
+        }
+        
         [self.maskView updateTip:tip isValid:isValid];
         [self checkResult:isValid];
         return;
