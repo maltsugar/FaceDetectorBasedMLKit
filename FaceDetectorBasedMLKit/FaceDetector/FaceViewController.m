@@ -62,7 +62,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
         _staySeconds = 2;
     }
     if (!_timeoutSeconds) {
-        _timeoutSeconds = 10;
+        _timeoutSeconds = 60;
     }
     
     _originBrightness = [[UIScreen mainScreen] brightness];

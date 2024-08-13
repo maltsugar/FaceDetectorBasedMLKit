@@ -12,7 +12,6 @@
 @interface ViewController ()
 
 
-@property (nonatomic, strong) FaceViewController *facevc;
 
 @end
 
@@ -26,10 +25,9 @@
     __weak typeof(self) weakSelf = self;
     
     FaceViewController *facevc = [FaceViewController new];
-    _facevc = facevc;
     facevc.title = @"打卡";
-//    facevc.timeoutSeconds = 5;
-//    facevc.staySeconds = 10;
+//    facevc.timeoutSeconds = 60;
+//    facevc.staySeconds = 2;
     
     [facevc setSuccessBlock:^(UIImage * _Nonnull image) {
         ResultViewController *rvc = [ResultViewController new];
@@ -37,12 +35,14 @@
         [self.navigationController pushViewController:rvc animated:YES];
     }];
     
+    __weak typeof(facevc) weakFaceVC = facevc;
+    
     [facevc setFailureBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *retry = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf.facevc restart];
+            [weakFaceVC restart];
         }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -58,6 +58,7 @@
     [self.navigationController pushViewController:facevc animated:YES];
     
     // or
+//    [self addChildViewController:facevc];
 //    [self.view addSubview:facevc.view];
 }
 
