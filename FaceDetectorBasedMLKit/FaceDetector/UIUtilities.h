@@ -55,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)UIImageFromImageBuffer:(CVImageBufferRef)imageBuffer
                         orientation:(UIImageOrientation)orientation;
 
++ (UIImage *)UIImageFromImageBuffer:(CVImageBufferRef)imageBuffer
+                        orientation:(UIImageOrientation)orientation scale:(CGFloat)scale;
+
 /**
  * Converts a `UIImage` to an image buffer.
  *

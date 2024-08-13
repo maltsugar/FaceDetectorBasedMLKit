@@ -18,8 +18,8 @@
 
 
 static NSString *const videoDataOutputQueueLabel =
-@"zgy.google.mlkit.visiondetector.VideoDataOutputQueue";
-static NSString *const sessionQueueLabel = @"zgy.google.mlkit.visiondetector.SessionQueue";
+@"sjgj.google.mlkit.visiondetector.VideoDataOutputQueue";
+static NSString *const sessionQueueLabel = @"sjgj.google.mlkit.visiondetector.SessionQueue";
 static const CGFloat MLKSmallDotRadius = 4.0;
 
 
@@ -70,6 +70,7 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     _sessionQueue = dispatch_queue_create(sessionQueueLabel.UTF8String, nil);
     _previewOverlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
     _previewOverlayView.contentMode = UIViewContentModeScaleAspectFill;
+//    _previewOverlayView.contentMode = UIViewContentModeScaleAspectFit;
     _previewOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
     
     _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -99,7 +100,6 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
 
 
 #pragma mark - On-Device Detections
-
 - (void)detectFacesOnDeviceInImage:(MLKVisionImage *)image
                              width:(CGFloat)width
                             height:(CGFloat)height {
@@ -156,10 +156,10 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
             // 检查人脸状态
             [strongSelf checkFaceStatus:face rect:standardizedRect faceCount:1];
             
-            [UIUtilities addRectangle:standardizedRect
-                               toView:strongSelf.annotationOverlayView
-                                color:UIColor.greenColor];
-            [strongSelf addContoursForFace:face width:width height:height];
+//            [UIUtilities addRectangle:standardizedRect
+//                               toView:strongSelf.annotationOverlayView
+//                                color:UIColor.greenColor];
+//            [strongSelf addContoursForFace:face width:width height:height];
         }
     });
 }
@@ -169,7 +169,7 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     BOOL isValid = NO;
     NSString *tip = @"";
     if (!face) {
-        tip = @"请将人脸移入框内";
+        tip = @"请面向屏幕";
         if (cnt > 1) {
             tip = @"检测到多张人脸";
         }
@@ -211,15 +211,16 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
         tip = @"请离远一点";
     }else if (CGRectGetWidth(standardizedRect) < r1 * sw  || CGRectGetHeight(standardizedRect) < r1 * sh) {
         // 距离过远
-        tip = @"请离近一点";
+        tip = @"请靠近一点";
     }else {
         // 距离合适  判断是否居中
         if (centerX > 0.4*sw && centerX < 0.6*sw &&
             centerY > 0.5*sh && centerY < 0.6*sh) {
-            tip = @"请保持姿势2~3秒";
+            tip = @"请保持静止不动";
             isValid = YES;
         }else {
-            tip = @"请保持人脸居中";
+//            tip = @"请保持人脸居中";
+            tip = @"请将保持正脸在框内";
         }
     }
     
@@ -340,7 +341,7 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     }
     UIImageOrientation orientation =
     _isUsingFrontCamera ? UIImageOrientationLeftMirrored : UIImageOrientationRight;
-    UIImage *image = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation];
+    UIImage *image = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation scale:2.0f];
     _previewOverlayView.image = image;
 }
 
@@ -435,6 +436,8 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
 //        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
 //    ]];
     
+    
+  
     [_maskView.previewView  addSubview:_previewOverlayView];
     [NSLayoutConstraint activateConstraints:@[
         [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_maskView.previewView.centerYAnchor],

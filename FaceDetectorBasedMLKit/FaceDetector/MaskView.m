@@ -19,6 +19,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UIButton *tipBtn;
+@property (weak, nonatomic) IBOutlet UILabel *tipLab;
+
 
 
 @end
@@ -32,9 +34,19 @@ blue:((float)(hexValue & 0xFF)) / 255.0 alpha:1.0]
 
 + (instancetype)maskView
 {
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"FDResource" ofType:@"bundle"];
+//    if (path) {
+//        NSBundle *bd = [NSBundle bundleWithPath:path];
+//        UINib *nib = [UINib nibWithNibName:NSStringFromClass(self) bundle:bd];
+//        NSArray *arr = [nib instantiateWithOwner:nil options:nil];
+//        return [arr lastObject];
+//    }
+//    return [self new];
+    
     NSArray *arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil];
     return [arr lastObject];
 }
+
 
 
 - (void)awakeFromNib
@@ -66,6 +78,9 @@ blue:((float)(hexValue & 0xFF)) / 255.0 alpha:1.0]
     }
     [_tipBtn setTitle:tip forState:UIControlStateNormal];
     [_tipBtn setTitleColor:color forState:UIControlStateNormal];
+    
+    // 顶部label提示
+    _tipLab.text = tip;
 }
 
 - (int)getNearestEven:(CGFloat)old
