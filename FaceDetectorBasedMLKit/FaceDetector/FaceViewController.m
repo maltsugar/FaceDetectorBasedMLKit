@@ -42,20 +42,28 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 @property (nonatomic, strong) MaskView *maskView;
 
 @property (nonatomic, assign) CGFloat originBrightness;
-@property (nonatomic, strong) dispatch_source_t timer;
+@property (nonatomic, strong) dispatch_source_t stayTimer;// 保持不动timer
+
+@property (nonatomic, strong) dispatch_source_t timeoutTimer; // 超时timer
 
 @end
 
 #define kFDScreenW  [UIScreen mainScreen].bounds.size.width
 #define kFDScreenH  [UIScreen mainScreen].bounds.size.height
 
-const int staySeconds = 2; // 居中保持时间，至少保持这个时间，才算识别成功
 
 @implementation FaceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    if (!_staySeconds) {
+        _staySeconds = 2;
+    }
+    if (!_timeoutSeconds) {
+        _timeoutSeconds = 10;
+    }
     
     _originBrightness = [[UIScreen mainScreen] brightness];
     [[UIScreen mainScreen] setWantsSoftwareDimming:YES];
@@ -95,6 +103,11 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     
     _previewLayer.frame = _cameraView.frame;
     
+}
+
+- (void)restart
+{
+    [self startSession];
 }
 
 
@@ -233,18 +246,22 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
 - (void)checkResult:(BOOL)isvalid
 {
     if (isvalid) {
+        // 符合条件 取消超时timer
+        [self cancelTimeoutTimer];
+        
+        
         // 开启计时器2s 后，回调
         __weak typeof(self) weakSelf = self;
-        if (!self.timer) {
+        if (!self.stayTimer) {
             __block int seconds = 0;
-            self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-            if (self.timer) {
-                dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), 1 * NSEC_PER_SEC, 0);
-                dispatch_source_set_event_handler(self.timer, ^{
+            self.stayTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+            if (self.stayTimer) {
+                dispatch_source_set_timer(self.stayTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 1 * NSEC_PER_SEC, 0);
+                dispatch_source_set_event_handler(self.stayTimer, ^{
                     // 定时器触发时执行的任务
                     seconds++;
 //                    NSLog(@"seconds: %d", seconds);
-                    if (seconds == staySeconds) {
+                    if (seconds == weakSelf.staySeconds) {
                         [weakSelf stopSession];
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -254,13 +271,14 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
 
                             [weakSelf resetScreen];
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [weakSelf cancelTimer];
+                                [weakSelf cancelStayTimer];
+                                [weakSelf cancelTimeoutTimer];
                             });
                         });
                     }
                     
                 });
-                dispatch_resume(self.timer);
+                dispatch_resume(self.stayTimer);
             }
            
         }
@@ -268,19 +286,68 @@ const int staySeconds = 2; // 居中保持时间，至少保持这个时间，�
     }else
     {
         // 动了  取消计时
-        [self cancelTimer];
+        [self cancelStayTimer];
+        
+        // 不满足检测姿势要求 开启超时timer
+        [self startTimeoutTimer];
     }
 }
 
-- (void)cancelTimer
+
+
+
+#pragma mark- timer
+
+- (void)cancelStayTimer
 {
-    if (self.timer) {
-        dispatch_source_cancel(self.timer);
-        self.timer = nil;
+    if (self.stayTimer) {
+        dispatch_source_cancel(self.stayTimer);
+        self.stayTimer = nil;
     }
 }
 
+- (void)cancelTimeoutTimer
+{
+    if (self.timeoutTimer) {
+        dispatch_source_cancel(self.timeoutTimer);
+        self.timeoutTimer = nil;
+    }
+}
 
+- (void)startTimeoutTimer
+{
+    __weak typeof(self) weakSelf = self;
+    if (!self.timeoutTimer) {
+        __block int seconds = 0;
+        self.timeoutTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+        if (self.timeoutTimer) {
+            dispatch_source_set_timer(self.timeoutTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 1 * NSEC_PER_SEC, 0);
+            dispatch_source_set_event_handler(self.timeoutTimer, ^{
+                // 定时器触发时执行的任务
+                seconds++;
+//                NSLog(@"timeout seconds: %d", seconds);
+                if (seconds == weakSelf.timeoutSeconds) {
+                    [weakSelf stopSession];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (weakSelf.failureBlock) {
+                            NSError *err = [NSError errorWithDomain:@"facedector.sjgy" code:100 userInfo:@{NSLocalizedDescriptionKey: @"检测超时"}];
+                            weakSelf.failureBlock(err);
+                        }
+                        
+                        [weakSelf resetScreen];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [weakSelf cancelTimeoutTimer];
+                        });
+                    });
+                }
+                
+            });
+            dispatch_resume(self.timeoutTimer);
+        }
+    }
+      
+}
 
 #pragma mark- AVCaptureVideoDataOutputSampleBufferDelegate
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection

@@ -12,7 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FaceViewController : UIViewController
 
 
+@property (nonatomic, assign) NSUInteger staySeconds; // 居中保持时间，至少保持这个时间，才算识别成功, default 2s
+@property (nonatomic, assign) NSUInteger timeoutSeconds; // 超时时间, default 10s
+
 @property (nonatomic,   copy) void(^successBlock)(UIImage *image);
+@property (nonatomic,   copy) void(^failureBlock)(NSError *error);
+
+- (void)restart;
 
 @end
 
