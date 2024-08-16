@@ -10,7 +10,7 @@
 #import <CoreVideo/CoreVideo.h>
 #import "UIUtilities.h"
 #import "MaskView.h"
-
+#import "YDFaceErrorView.h"
 
 @import MLImage;
 @import MLKit;
@@ -45,6 +45,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 @property (nonatomic, strong) dispatch_source_t stayTimer;// 保持不动timer
 
 @property (nonatomic, strong) dispatch_source_t timeoutTimer; // 超时timer
+
+@property (nonatomic, strong) YDFaceErrorView *errorView;
 
 @end
 
@@ -95,6 +97,31 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     [self setUpCaptureSessionOutput];
     [self setUpCaptureSessionInput];
     
+    // 错误提示view
+    _errorView = [YDFaceErrorView errorView];
+    [self.view addSubview:_errorView];
+    _errorView.frame = self.view.bounds;
+    [_errorView.retryBtn addTarget:self action:@selector(retryBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    _errorView.hidden = YES;
+    
+    // 关闭按钮
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn setImage:[UIImage imageNamed:@"close_btn"] forState:UIControlStateNormal];
+    [btn setBackgroundColor:[UIColor.blackColor colorWithAlphaComponent:0.1]];
+    [btn setTitle:@"X" forState:UIControlStateNormal];
+    btn.layer.cornerRadius = 15;
+    btn.clipsToBounds = YES;
+    [self.view addSubview:btn];
+    btn.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [btn.widthAnchor constraintEqualToConstant:30],
+        [btn.heightAnchor constraintEqualToConstant:30],
+        [btn.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:80],
+        [btn.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-20],
+    ]];
+    [btn addTarget:self action:@selector(handleCloseAction) forControlEvents:UIControlEventTouchUpInside];
+    _closeBtn = btn;
+    
 
     [self checkCamera];
     
@@ -108,9 +135,32 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
 }
 
+- (void)handleCloseAction
+{
+    // 判断当前控制器是被present出来的还是push出来的
+    if (self.presentingViewController) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)retryBtnAction
+{
+    _errorView.tipLab.text = nil;
+    _errorView.hidden = YES;
+    
+    [self restart];
+}
+
 - (void)restart
 {
     [self startSession];
+}
+
+- (void)exit
+{
+    [self handleCloseAction];
 }
 
 - (void)addNotifiObserver
@@ -352,6 +402,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                             weakSelf.failureBlock(err);
                         }
                         
+                        weakSelf.errorView.hidden = NO;
+                        weakSelf.errorView.tipLab.text = @"已超时，请重试！";
                         [weakSelf resetScreen];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [weakSelf cancelTimeoutTimer];
