@@ -95,7 +95,10 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     [self setUpCaptureSessionOutput];
     [self setUpCaptureSessionInput];
     
-    [self startSession];
+
+    [self checkCamera];
+    
+    [self addNotifiObserver];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -110,6 +113,20 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     [self startSession];
 }
 
+- (void)addNotifiObserver
+{
+//    // 程序重新进入前台的时候
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startScreenHighlight) name:UIApplicationDidBecomeActiveNotification object:nil];
+    // 程序后台挂起
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetScreen) name:UIApplicationWillResignActiveNotification object:nil];
+    // 程序退出的时候
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetScreen) name:UIApplicationWillTerminateNotification object:nil];
+}
+
+- (void)removeNotiObserver
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 #pragma mark - On-Device Detections
@@ -480,6 +497,57 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     });
 }
 
+- (void)checkCamera
+{
+
+//    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+//    switch (authStatus) {
+//        case AVAuthorizationStatusNotDetermined:
+//            //没有询问
+//            
+//            break;
+//        case AVAuthorizationStatusRestricted:
+//            //未授权，家长限制
+//            
+//            break;
+//        case AVAuthorizationStatusDenied:
+//            //用户拒绝
+//            
+//            break;
+//        case AVAuthorizationStatusAuthorized:
+//            //用户同意
+//
+//            break;
+//        default:
+//            break;
+//    }
+    
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!granted) {
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"进行人脸识别需要授权相机权限，是否去设置打开相机权限？" preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+                UIAlertAction *gotoSetting = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                }];
+                
+                [alert addAction:cancel];
+                [alert addAction:gotoSetting];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
+                return;
+            }
+            
+            [self startSession];
+        });
+    }];
+}
+
+
 - (void)startSession {
     __weak typeof(self) weakSelf = self;
     dispatch_async(_sessionQueue, ^{
@@ -676,6 +744,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 {
     NSLog(@"FaceViewController释放了");
     [self resetScreen];
+    [self removeNotiObserver];
 }
 
 - (void)resetScreen
