@@ -19,7 +19,7 @@
     
     UIImageView *imgv = [UIImageView new];
     imgv.image = _img;
-    imgv.contentMode = UIViewContentModeScaleAspectFill;
+    imgv.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:imgv];
     imgv.translatesAutoresizingMaskIntoConstraints = NO;
     

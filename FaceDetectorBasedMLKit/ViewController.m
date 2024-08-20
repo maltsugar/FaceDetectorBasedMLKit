@@ -26,7 +26,7 @@
     
     FaceViewController *facevc = [FaceViewController new];
     facevc.title = @"打卡";
-    facevc.timeoutSeconds = 5;
+//    facevc.timeoutSeconds = 5;
     facevc.staySeconds = 2;
     
     [facevc setSuccessBlock:^(UIImage * _Nonnull image) {

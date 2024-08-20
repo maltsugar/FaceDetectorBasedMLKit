@@ -48,6 +48,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 
 @property (nonatomic, strong) YDFaceErrorView *errorView;
 
+@property (nonatomic, strong) UIImage *resImage;
+
 @end
 
 #define kFDScreenW  [UIScreen mainScreen].bounds.size.width
@@ -133,6 +135,11 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     _previewLayer.frame = _cameraView.frame;
     
+}
+
+- (BOOL)isBigScreen
+{
+    return CGRectGetHeight(UIScreen.mainScreen.bounds) > 700;
 }
 
 - (void)handleCloseAction
@@ -286,6 +293,11 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     CGFloat r0 = 0.70;
     CGFloat r1 = 0.35;
     
+    if ([self isBigScreen]) {
+        r0 = 0.75;
+        r1 = 0.3;
+    }
+    
     if (CGRectGetWidth(standardizedRect) > r0 * sw  || CGRectGetHeight(standardizedRect) > r0 * sh) {
         // 距离过近
         tip = @"请离远一点";
@@ -333,7 +345,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (weakSelf.successBlock) {
-                                weakSelf.successBlock(weakSelf.previewOverlayView.image);
+                                weakSelf.successBlock(weakSelf.resImage);
                             }
 
                             [weakSelf resetScreen];
@@ -477,6 +489,9 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     }
     UIImageOrientation orientation =
     _isUsingFrontCamera ? UIImageOrientationLeftMirrored : UIImageOrientationRight;
+    
+    _resImage = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation scale:1.0f];
+    
     UIImage *image = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation scale:2.0f];
     _previewOverlayView.image = image;
 }
