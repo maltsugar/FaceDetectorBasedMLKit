@@ -82,7 +82,6 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     _sessionQueue = dispatch_queue_create(sessionQueueLabel.UTF8String, nil);
     _previewOverlayView = [[UIImageView alloc] initWithFrame:CGRectZero];
     _previewOverlayView.contentMode = UIViewContentModeScaleAspectFill;
-//    _previewOverlayView.contentMode = UIViewContentModeScaleAspectFit;
     _previewOverlayView.translatesAutoresizingMaskIntoConstraints = NO;
     
     _annotationOverlayView = [[UIView alloc] initWithFrame:CGRectZero];
