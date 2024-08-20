@@ -21,6 +21,8 @@
 		B942A2BC2C6EF7D100CDCB2C /* YDFaceErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B942A2BA2C6EF7D100CDCB2C /* YDFaceErrorView.m */; };
 		B942A2BF2C6EFA6100CDCB2C /* fd_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B942A2BD2C6EFA6100CDCB2C /* fd_error@2x.png */; };
 		B942A2C02C6EFA6100CDCB2C /* fd_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B942A2BE2C6EFA6100CDCB2C /* fd_error@3x.png */; };
+		B97FB8DB2C746E410041CA7C /* HWDebounce.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FB8D52C746E410041CA7C /* HWDebounce.m */; };
+		B97FB8DC2C746E410041CA7C /* HWThrottle.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FB8D82C746E410041CA7C /* HWThrottle.m */; };
 		B997DE072C6B26D500D7E13D /* MaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B997DE042C6B26D500D7E13D /* MaskView.xib */; };
 		B997DE082C6B26D500D7E13D /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B997DE052C6B26D500D7E13D /* MaskView.m */; };
 		B997DE292C6B2A9600D7E13D /* fd_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B997DE202C6B2A8A00D7E13D /* fd_face@2x.png */; };
@@ -61,6 +63,10 @@
 		B942A2BA2C6EF7D100CDCB2C /* YDFaceErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDFaceErrorView.m; sourceTree = "<group>"; };
 		B942A2BD2C6EFA6100CDCB2C /* fd_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fd_error@2x.png"; sourceTree = "<group>"; };
 		B942A2BE2C6EFA6100CDCB2C /* fd_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fd_error@3x.png"; sourceTree = "<group>"; };
+		B97FB8D42C746E410041CA7C /* HWDebounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWDebounce.h; sourceTree = "<group>"; };
+		B97FB8D52C746E410041CA7C /* HWDebounce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWDebounce.m; sourceTree = "<group>"; };
+		B97FB8D72C746E410041CA7C /* HWThrottle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWThrottle.h; sourceTree = "<group>"; };
+		B97FB8D82C746E410041CA7C /* HWThrottle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWThrottle.m; sourceTree = "<group>"; };
 		B997DE042C6B26D500D7E13D /* MaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaskView.xib; sourceTree = "<group>"; };
 		B997DE052C6B26D500D7E13D /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
 		B997DE062C6B26D500D7E13D /* MaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskView.h; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		B91FE5372C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */ = {
 			isa = PBXGroup;
 			children = (
+				B97FB8DA2C746E410041CA7C /* HWThrottle */,
 				B91FE5582C5A2E4800A6F768 /* FaceDetector */,
 				B91FE5382C5A2D8E00A6F768 /* AppDelegate.h */,
 				B91FE5392C5A2D8E00A6F768 /* AppDelegate.m */,
@@ -149,6 +156,33 @@
 				B942A2B82C6EF7D000CDCB2C /* YDFaceErrorView.xib */,
 			);
 			path = FaceDetector;
+			sourceTree = "<group>";
+		};
+		B97FB8D62C746E410041CA7C /* Debounce */ = {
+			isa = PBXGroup;
+			children = (
+				B97FB8D42C746E410041CA7C /* HWDebounce.h */,
+				B97FB8D52C746E410041CA7C /* HWDebounce.m */,
+			);
+			path = Debounce;
+			sourceTree = "<group>";
+		};
+		B97FB8D92C746E410041CA7C /* Throttle */ = {
+			isa = PBXGroup;
+			children = (
+				B97FB8D72C746E410041CA7C /* HWThrottle.h */,
+				B97FB8D82C746E410041CA7C /* HWThrottle.m */,
+			);
+			path = Throttle;
+			sourceTree = "<group>";
+		};
+		B97FB8DA2C746E410041CA7C /* HWThrottle */ = {
+			isa = PBXGroup;
+			children = (
+				B97FB8D62C746E410041CA7C /* Debounce */,
+				B97FB8D92C746E410041CA7C /* Throttle */,
+			);
+			path = HWThrottle;
 			sourceTree = "<group>";
 		};
 		B997DE282C6B2A8A00D7E13D /* assets */ = {
@@ -330,6 +364,8 @@
 				B91FE54B2C5A2D9100A6F768 /* main.m in Sources */,
 				B91FE53D2C5A2D8E00A6F768 /* SceneDelegate.m in Sources */,
 				B91FE55F2C5A2EED00A6F768 /* ResultViewController.m in Sources */,
+				B97FB8DB2C746E410041CA7C /* HWDebounce.m in Sources */,
+				B97FB8DC2C746E410041CA7C /* HWThrottle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

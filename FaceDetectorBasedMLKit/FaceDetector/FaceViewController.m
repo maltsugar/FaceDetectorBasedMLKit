@@ -11,6 +11,8 @@
 #import "UIUtilities.h"
 #import "MaskView.h"
 #import "YDFaceErrorView.h"
+//#import "HWDebounce.h"
+#import "HWThrottle.h"
 
 @import MLImage;
 @import MLKit;
@@ -49,6 +51,12 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 @property (nonatomic, strong) YDFaceErrorView *errorView;
 
 @property (nonatomic, strong) UIImage *resImage;
+
+@property (nonatomic, strong) HWThrottle *taskRunner;
+@property (nonatomic, strong) MLKFace *debounceParamFace;
+@property (nonatomic, assign) CGRect debounceParamRect;
+@property (nonatomic, assign) int debounceParamCnt;
+
 
 @end
 
@@ -127,6 +135,12 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     [self checkCamera];
     
     [self addNotifiObserver];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.taskRunner invalidate];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -220,12 +234,25 @@ static const CGFloat MLKSmallDotRadius = 4.0;
         }
         if (faces.count == 0) {
             //            NSLog(@"On-Device face detector returned no results.");
-            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:0];
+            
+//            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:0];
+            
+            // 节流
+            strongSelf.debounceParamFace = nil;
+            strongSelf.debounceParamRect = CGRectZero;
+            strongSelf.debounceParamCnt = 0;
+            [strongSelf.taskRunner call];
             return;
         }
         
         if (faces.count > 1) {
-            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:(int)faces.count];
+//            [strongSelf checkFaceStatus:nil rect:CGRectZero faceCount:(int)faces.count];
+            
+            // 节流
+            strongSelf.debounceParamFace = nil;
+            strongSelf.debounceParamRect = CGRectZero;
+            strongSelf.debounceParamCnt = (int)faces.count;
+            [strongSelf.taskRunner call];
             return;
         }
         
@@ -240,7 +267,13 @@ static const CGFloat MLKSmallDotRadius = 4.0;
             CGRect standardizedRect = rect1;
             
             // 检查人脸状态
-            [strongSelf checkFaceStatus:face rect:standardizedRect faceCount:1];
+//            [strongSelf checkFaceStatus:face rect:standardizedRect faceCount:1];
+            
+            // 节流
+            strongSelf.debounceParamFace = face;
+            strongSelf.debounceParamRect = standardizedRect;
+            strongSelf.debounceParamCnt = 1;
+            [strongSelf.taskRunner call];
             
 //            [UIUtilities addRectangle:standardizedRect
 //                               toView:strongSelf.annotationOverlayView
@@ -270,9 +303,9 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 //    NSLog(@"headEulerAngleY: %f", face.headEulerAngleY); // 左右摇头角度 [-5, +5]效果好
 //    NSLog(@"headEulerAngleZ: %f", face.headEulerAngleZ); // 手机屏幕旋转角度（即脸平面和手机屏幕屏幕平面的交叉角度）[-3, +3]效果好
     
-    if (abs((int)face.headEulerAngleX) > 6 ||
-        abs((int)face.headEulerAngleY) > 5 ||
-        abs((int)face.headEulerAngleZ) > 3
+    if (abs((int)face.headEulerAngleX) > 8 ||
+        abs((int)face.headEulerAngleY) > 8 ||
+        abs((int)face.headEulerAngleZ) > 4
         )
     {
         tip = @"请将保持正脸在框内";
@@ -292,9 +325,14 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     CGFloat r0 = 0.70;
     CGFloat r1 = 0.35;
     
+    CGFloat minYRatio = 0.4;
+    CGFloat maxYRatio = 0.6;
+    
     if ([self isBigScreen]) {
         r0 = 0.75;
         r1 = 0.3;
+        
+        maxYRatio = 0.65;
     }
     
     if (CGRectGetWidth(standardizedRect) > r0 * sw  || CGRectGetHeight(standardizedRect) > r0 * sh) {
@@ -306,7 +344,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     }else {
         // 距离合适  判断是否居中
         if (centerX > 0.4*sw && centerX < 0.6*sw &&
-            centerY > 0.5*sh && centerY < 0.6*sh) {
+            centerY > minYRatio*sh && centerY < maxYRatio*sh) {
             tip = @"请保持静止不动";
             isValid = YES;
         }else {
@@ -802,7 +840,17 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                                radius:MLKSmallDotRadius];
     }
 }
-
+#pragma mark- lazy
+- (HWThrottle *)taskRunner
+{
+    if (nil == _taskRunner) {
+        __weak typeof(self) weakSelf = self;
+        _taskRunner = [[HWThrottle alloc] initWithInterval:0.8 taskBlock:^{
+            [weakSelf checkFaceStatus:weakSelf.debounceParamFace rect:weakSelf.debounceParamRect faceCount:weakSelf.debounceParamCnt];
+        }];
+    }
+    return _taskRunner;
+}
 
 
 #pragma mark- dealloc
