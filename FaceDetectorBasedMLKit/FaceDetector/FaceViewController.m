@@ -322,7 +322,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     CGFloat sw = CGRectGetWidth(UIScreen.mainScreen.bounds);
     CGFloat sh = CGRectGetHeight(UIScreen.mainScreen.bounds);
-    CGFloat r0 = 0.70;
+    CGFloat r0 = 0.75;
     CGFloat r1 = 0.35;
     
     CGFloat minYRatio = 0.4;
@@ -845,7 +845,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 {
     if (nil == _taskRunner) {
         __weak typeof(self) weakSelf = self;
-        _taskRunner = [[HWThrottle alloc] initWithInterval:0.8 taskBlock:^{
+        _taskRunner = [[HWThrottle alloc] initWithInterval:0.4 taskBlock:^{
             [weakSelf checkFaceStatus:weakSelf.debounceParamFace rect:weakSelf.debounceParamRect faceCount:weakSelf.debounceParamCnt];
         }];
     }
