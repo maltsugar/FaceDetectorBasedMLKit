@@ -322,18 +322,19 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     CGFloat sw = CGRectGetWidth(UIScreen.mainScreen.bounds);
     CGFloat sh = CGRectGetHeight(UIScreen.mainScreen.bounds);
-    CGFloat r0 = 0.75;
-    CGFloat r1 = 0.35;
+    CGFloat r0 = 0.85;
+    CGFloat r1 = 0.3;
     
-    CGFloat minYRatio = 0.4;
-    CGFloat maxYRatio = 0.6;
+    CGFloat minYRatio = 0.3;
+    CGFloat maxYRatio = 0.7;
     
-    if ([self isBigScreen]) {
-        r0 = 0.75;
-        r1 = 0.3;
-        
-        maxYRatio = 0.65;
-    }
+//    if ([self isBigScreen]) {
+//        r0 = 0.75;
+//        r1 = 0.3;
+//
+//        minYRatio = 0.4;
+//        maxYRatio = 0.65;
+//    }
     
     if (CGRectGetWidth(standardizedRect) > r0 * sw  || CGRectGetHeight(standardizedRect) > r0 * sh) {
         // 距离过近
