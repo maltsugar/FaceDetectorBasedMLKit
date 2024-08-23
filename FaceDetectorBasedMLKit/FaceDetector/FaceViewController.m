@@ -846,7 +846,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 {
     if (nil == _taskRunner) {
         __weak typeof(self) weakSelf = self;
-        _taskRunner = [[HWThrottle alloc] initWithInterval:0.4 taskBlock:^{
+        _taskRunner = [[HWThrottle alloc] initWithInterval:0.2 taskBlock:^{
             [weakSelf checkFaceStatus:weakSelf.debounceParamFace rect:weakSelf.debounceParamRect faceCount:weakSelf.debounceParamCnt];
         }];
     }
