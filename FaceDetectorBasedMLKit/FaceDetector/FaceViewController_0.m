@@ -14,8 +14,6 @@
 //#import "HWDebounce.h"
 #import "HWThrottle.h"
 
-#import "UIImage+JKResize.h"
-
 @import MLImage;
 @import MLKit;
 
@@ -99,10 +97,9 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     
-    // zgytest
-//    _maskView = [MaskView maskView];
-//    [self.view addSubview:_maskView];
-//    _maskView.frame = self.view.bounds;
+    _maskView = [MaskView maskView];
+    [self.view addSubview:_maskView];
+    _maskView.frame = self.view.bounds;
     
     [self setUpPreviewOverlayView];
     [self setUpAnnotationOverlayView];
@@ -278,11 +275,10 @@ static const CGFloat MLKSmallDotRadius = 4.0;
             strongSelf.debounceParamCnt = 1;
             [strongSelf.taskRunner call];
             
-            // zgytest
-            [UIUtilities addRectangle:standardizedRect
-                               toView:strongSelf.annotationOverlayView
-                                color:UIColor.greenColor];
-            [strongSelf addContoursForFace:face width:width height:height];
+//            [UIUtilities addRectangle:standardizedRect
+//                               toView:strongSelf.annotationOverlayView
+//                                color:UIColor.greenColor];
+//            [strongSelf addContoursForFace:face width:width height:height];
         }
     });
 }
@@ -387,20 +383,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (weakSelf.successBlock) {
-                                
-                                // zgytest
-//                                UIImage *img = weakSelf.resImage;
-                                
-                                CGFloat x = 0.5 * (720 - 640);
-                                CGFloat y = 0.5 * (1280 - 960);
-                                
-                                // 可能是左上角为原点  横屏（home键向右，是左上角为左下角数学坐标系）为坐标系
-//                                UIImage *img = [weakSelf.resImage jk_croppedImage:CGRectMake(y, x, 960, 640)];
-                                UIImage *img = [weakSelf clipImage:weakSelf.resImage toRect:CGRectMake(y, x, 960, 640)];
-                                
-                                UIImageWriteToSavedPhotosAlbum(img, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)weakSelf);
-                                
-                                weakSelf.successBlock(img);
+                                weakSelf.successBlock(weakSelf.resImage);
                             }
 
                             [weakSelf resetScreen];
@@ -427,19 +410,6 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     }
 }
 
-
-// 方式1
-- (UIImage *)clipImage:(UIImage *)image toRect:(CGRect)rect {
-    
-    rect.origin.x *= image.scale;
-    rect.origin.y *= image.scale;
-    rect.size.width *= image.scale;
-    rect.size.height *= image.scale;
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:UIImageOrientationLeftMirrored];
-    CGImageRelease(imageRef);
-    return newImage;
-}
 
 
 
@@ -559,18 +529,10 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     _isUsingFrontCamera ? UIImageOrientationLeftMirrored : UIImageOrientationRight;
     
     _resImage = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation scale:1.0f];
-
+    
     UIImage *image = [UIUtilities UIImageFromImageBuffer:imageBuffer orientation:orientation scale:2.0f];
     _previewOverlayView.image = image;
 }
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-
-{
-    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
-}
-
-
 
 #pragma mark - Private
 - (void)setUpCaptureSessionOutput {
@@ -584,11 +546,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
         [strongSelf.captureSession beginConfiguration];
         // When performing latency tests to determine ideal capture settings,
         // run the app in 'release' mode to get accurate performance metrics
-        
-        // zgytest
-//        strongSelf.captureSession.sessionPreset = AVCaptureSessionPresetMedium;
-        strongSelf.captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
-        
+        strongSelf.captureSession.sessionPreset = AVCaptureSessionPresetMedium;
         
         AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
         output.videoSettings = @{
@@ -710,24 +668,23 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 }
 
 - (void)setUpPreviewOverlayView {
-    [_cameraView addSubview:_previewOverlayView];
-    [NSLayoutConstraint activateConstraints:@[
-        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
-        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
-        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
-        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
-    ]];
+//    [_cameraView addSubview:_previewOverlayView];
+//    [NSLayoutConstraint activateConstraints:@[
+//        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
+//        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
+//        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
+//        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
+//    ]];
     
     
   
-    // zgytest
-//    [_maskView.previewView  addSubview:_previewOverlayView];
-//    [NSLayoutConstraint activateConstraints:@[
-//        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_maskView.previewView.centerYAnchor],
-//        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_maskView.previewView.centerXAnchor],
-//        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_maskView.previewView.leadingAnchor],
-//        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_maskView.previewView.trailingAnchor]
-//    ]];
+    [_maskView.previewView  addSubview:_previewOverlayView];
+    [NSLayoutConstraint activateConstraints:@[
+        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_maskView.previewView.centerYAnchor],
+        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_maskView.previewView.centerXAnchor],
+        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_maskView.previewView.leadingAnchor],
+        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_maskView.previewView.trailingAnchor]
+    ]];
     
     
 }

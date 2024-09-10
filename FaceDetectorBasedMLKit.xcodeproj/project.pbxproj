@@ -520,6 +520,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "此APP需要请求获取您的相机权限";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "此APP需要使用相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -551,6 +552,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "此APP需要请求获取您的相机权限";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "此APP需要使用相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
