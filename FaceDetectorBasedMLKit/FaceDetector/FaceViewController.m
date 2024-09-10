@@ -14,7 +14,6 @@
 //#import "HWDebounce.h"
 #import "HWThrottle.h"
 
-#import "UIImage+JKResize.h"
 
 @import MLImage;
 @import MLKit;
@@ -394,9 +393,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                                 CGFloat x = 0.5 * (720 - 640);
                                 CGFloat y = 0.5 * (1280 - 960);
                                 
-                                // 可能是左上角为原点  横屏（home键向右，是左上角为左下角数学坐标系）为坐标系
-//                                UIImage *img = [weakSelf.resImage jk_croppedImage:CGRectMake(y, x, 960, 640)];
-                                UIImage *img = [weakSelf clipImage:weakSelf.resImage toRect:CGRectMake(y, x, 960, 640)];
+                                CGRect rect = CGRectMake(x, y, 640, 960);
+                                UIImage *img = [weakSelf clipImage:weakSelf.resImage toRect:rect];
                                 
                                 UIImageWriteToSavedPhotosAlbum(img, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)weakSelf);
                                 
@@ -428,15 +426,39 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 }
 
 
-// 方式1
-- (UIImage *)clipImage:(UIImage *)image toRect:(CGRect)rect {
+#pragma mark- 图片裁剪
+- (UIImage *)clipImage:(UIImage *)image toRect:(CGRect)rect
+{
+    CGRect transRect = rect;
+    UIImageOrientation ort = image.imageOrientation;
+    if (ort == UIImageOrientationLeft ||
+        ort == UIImageOrientationRight ||
+        ort == UIImageOrientationLeftMirrored ||
+        ort == UIImageOrientationRightMirrored
+        ) {
+        // 照片放心为横向 xy需要交换
+        transRect.origin.x = rect.origin.y;
+        transRect.origin.y = rect.origin.x;
+        transRect.size.width = rect.size.height;
+        transRect.size.height = rect.size.width;
+        
+    }
     
-    rect.origin.x *= image.scale;
-    rect.origin.y *= image.scale;
-    rect.size.width *= image.scale;
-    rect.size.height *= image.scale;
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:UIImageOrientationLeftMirrored];
+    
+    transRect.origin.x *= image.scale;
+    transRect.origin.y *= image.scale;
+    transRect.size.width *= image.scale;
+    transRect.size.height *= image.scale;
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, transRect);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:ort];
+    
+//    rect.origin.x *= image.scale;
+//    rect.origin.y *= image.scale;
+//    rect.size.width *= image.scale;
+//    rect.size.height *= image.scale;
+//    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+//    UIImage *newImage = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:UIImageOrientationLeftMirrored];
+    
     CGImageRelease(imageRef);
     return newImage;
 }
