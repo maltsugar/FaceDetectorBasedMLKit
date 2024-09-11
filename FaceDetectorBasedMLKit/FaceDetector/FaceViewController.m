@@ -396,6 +396,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                                 CGRect rect = CGRectMake(x, y, 640, 960);
                                 UIImage *img = [weakSelf clipImage:weakSelf.resImage toRect:rect];
                                 
+                                UIImageWriteToSavedPhotosAlbum(weakSelf.resImage, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)weakSelf);
+                                
                                 UIImageWriteToSavedPhotosAlbum(img, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)weakSelf);
                                 
                                 weakSelf.successBlock(img);
@@ -436,13 +438,19 @@ static const CGFloat MLKSmallDotRadius = 4.0;
         ort == UIImageOrientationLeftMirrored ||
         ort == UIImageOrientationRightMirrored
         ) {
-        // 照片放心为横向 xy需要交换
+        // 照片方向为横向 xy需要交换
         transRect.origin.x = rect.origin.y;
         transRect.origin.y = rect.origin.x;
         transRect.size.width = rect.size.height;
         transRect.size.height = rect.size.width;
         
     }
+    
+    /**
+    // 原图 720*1280  -LeftMirrored 旋转后->  1280 * 720  原点左下角 和数学坐标系一样
+    // 截取  670 * 1210 （但图片最大是 1280 * 720， 去除xy  最大1230*650 ） 最终 670*650  旋转回来 650*670
+    transRect = CGRectMake(50, 70, image.size.width - 50, image.size.height - 70);
+    */
     
     
     transRect.origin.x *= image.scale;
