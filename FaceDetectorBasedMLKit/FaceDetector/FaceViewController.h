@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FaceViewController : UIViewController
 
 
-@property (nonatomic, assign) NSUInteger staySeconds; // 居中保持时间，至少保持这个时间，才算识别成功, default 2s
+@property (nonatomic, assign) NSTimeInterval staySeconds; // 居中保持时间，至少保持这个时间，才算识别成功, default 0.5, 最小0.1
 @property (nonatomic, assign) NSUInteger timeoutSeconds; // 超时时间, default 60s
 @property (nonatomic, strong) UIButton *closeBtn;
 

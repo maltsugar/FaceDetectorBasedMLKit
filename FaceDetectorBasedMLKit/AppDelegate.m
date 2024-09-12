@@ -6,6 +6,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ImageDetector.h"
+
 
 @interface AppDelegate ()
 
@@ -16,8 +18,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+//    for (int i = 1; i < 10; i ++) {
+//        UIImage *img = [UIImage imageNamed:@(i).stringValue];
+//        if (img) {
+//            [self checkImg:img];
+//        }
+//    }
+    
+    
+    NSArray *arr = @[@"0219", @"0220", @"0227", @"0228", @"0229"];
+    for (int i = 0; i < arr.count; i++) {
+        UIImage *img = [UIImage imageNamed:arr[i]];
+        if (img) {
+            [self checkImg:img];
+        }
+        
+    }
+    
+    
+    
+    
+    
     return YES;
 }
+
+- (void)checkImg:(UIImage *)image
+{
+    struct ImageQualityResult res = [[ImageDetector shared] checkImageQuality:image];
+    NSLog(@"passed: %d, brightness: %f, blur: %f, minSize: %d", res.passed, res.brightness, res.blur, res.minSize);
+}
+
 
 
 #pragma mark - UISceneSession lifecycle

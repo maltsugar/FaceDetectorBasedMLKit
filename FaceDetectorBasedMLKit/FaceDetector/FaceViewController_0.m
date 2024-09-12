@@ -71,7 +71,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     self.view.backgroundColor = UIColor.whiteColor;
     
     if (!_staySeconds) {
-        _staySeconds = 2;
+        _staySeconds = 0.5;
     }
     if (!_timeoutSeconds) {
         _timeoutSeconds = 60;
@@ -373,25 +373,27 @@ static const CGFloat MLKSmallDotRadius = 4.0;
             __block int seconds = 0;
             self.stayTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
             if (self.stayTimer) {
-                dispatch_source_set_timer(self.stayTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 1 * NSEC_PER_SEC, 0);
+                dispatch_source_set_timer(self.stayTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 0.1 * NSEC_PER_SEC, 0);
                 dispatch_source_set_event_handler(self.stayTimer, ^{
                     // 定时器触发时执行的任务
                     seconds++;
-//                    NSLog(@"seconds: %d", seconds);
-                    if (seconds == weakSelf.staySeconds) {
+                    NSLog(@"seconds: %d", seconds);
+                    if (seconds == weakSelf.staySeconds * 10) {
                         [weakSelf stopSession];
                         
-                        dispatch_async(dispatch_get_main_queue(), ^{
+                        // 延迟0.1秒回调  防止回调多次
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             if (weakSelf.successBlock) {
                                 weakSelf.successBlock(weakSelf.resImage);
                             }
-
+                            
                             [weakSelf resetScreen];
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 [weakSelf cancelStayTimer];
                                 [weakSelf cancelTimeoutTimer];
                             });
                         });
+                        
                     }
                     
                 });

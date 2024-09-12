@@ -33,6 +33,20 @@
 		B997DE2E2C6B2AA400D7E13D /* fd_t1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B997DE252C6B2A8A00D7E13D /* fd_t1@3x.png */; };
 		B997DE2F2C6B2AA700D7E13D /* fd_t2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B997DE262C6B2A8A00D7E13D /* fd_t2@2x.png */; };
 		B997DE302C6B2AA900D7E13D /* fd_t2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B997DE272C6B2A8A00D7E13D /* fd_t2@3x.png */; };
+		B99B38D42C918BC300472A31 /* ImageDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = B99B38D32C918BC300472A31 /* ImageDetector.mm */; };
+		B99B38D62C918F1B00472A31 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38D52C918F1B00472A31 /* opencv2.framework */; };
+		B99B38D82C918FE000472A31 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38D72C918FE000472A31 /* Accelerate.framework */; };
+		B99B38DA2C918FE700472A31 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38D92C918FE700472A31 /* AssetsLibrary.framework */; };
+		B99B38DC2C918FEE00472A31 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38DB2C918FEE00472A31 /* AVFoundation.framework */; };
+		B99B38DE2C918FF400472A31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38DD2C918FF400472A31 /* CoreGraphics.framework */; };
+		B99B38E02C918FFB00472A31 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38DF2C918FFB00472A31 /* CoreImage.framework */; };
+		B99B38E22C91900200472A31 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38E12C91900200472A31 /* CoreMedia.framework */; };
+		B99B38E42C91900900472A31 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38E32C91900900472A31 /* CoreVideo.framework */; };
+		B99B38E62C91900F00472A31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38E52C91900F00472A31 /* QuartzCore.framework */; };
+		B99B38E82C91901700472A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38E72C91901700472A31 /* UIKit.framework */; };
+		B99B38EA2C91901E00472A31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38E92C91901D00472A31 /* Foundation.framework */; };
+		B99B38EC2C91902500472A31 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38EB2C91902400472A31 /* Photos.framework */; };
+		B99B38EE2C91902B00472A31 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99B38ED2C91902A00472A31 /* Social.framework */; };
 		D4E012950DE86EEFBF4DFE81 /* Pods_FaceDetectorBasedMLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A1102CCC25F1A7CAB4E0B6 /* Pods_FaceDetectorBasedMLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +92,21 @@
 		B997DE252C6B2A8A00D7E13D /* fd_t1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fd_t1@3x.png"; sourceTree = "<group>"; };
 		B997DE262C6B2A8A00D7E13D /* fd_t2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fd_t2@2x.png"; sourceTree = "<group>"; };
 		B997DE272C6B2A8A00D7E13D /* fd_t2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fd_t2@3x.png"; sourceTree = "<group>"; };
+		B99B38D22C918BC300472A31 /* ImageDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDetector.h; sourceTree = "<group>"; };
+		B99B38D32C918BC300472A31 /* ImageDetector.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageDetector.mm; sourceTree = "<group>"; };
+		B99B38D52C918F1B00472A31 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		B99B38D72C918FE000472A31 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		B99B38D92C918FE700472A31 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B99B38DB2C918FEE00472A31 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B99B38DD2C918FF400472A31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B99B38DF2C918FFB00472A31 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		B99B38E12C91900200472A31 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B99B38E32C91900900472A31 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B99B38E52C91900F00472A31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B99B38E72C91901700472A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B99B38E92C91901D00472A31 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B99B38EB2C91902400472A31 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		B99B38ED2C91902A00472A31 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +114,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99B38E62C91900F00472A31 /* QuartzCore.framework in Frameworks */,
+				B99B38E82C91901700472A31 /* UIKit.framework in Frameworks */,
+				B99B38E22C91900200472A31 /* CoreMedia.framework in Frameworks */,
+				B99B38EC2C91902500472A31 /* Photos.framework in Frameworks */,
+				B99B38DE2C918FF400472A31 /* CoreGraphics.framework in Frameworks */,
+				B99B38D82C918FE000472A31 /* Accelerate.framework in Frameworks */,
+				B99B38E02C918FFB00472A31 /* CoreImage.framework in Frameworks */,
+				B99B38D62C918F1B00472A31 /* opencv2.framework in Frameworks */,
+				B99B38EA2C91901E00472A31 /* Foundation.framework in Frameworks */,
+				B99B38EE2C91902B00472A31 /* Social.framework in Frameworks */,
+				B99B38E42C91900900472A31 /* CoreVideo.framework in Frameworks */,
+				B99B38DC2C918FEE00472A31 /* AVFoundation.framework in Frameworks */,
 				D4E012950DE86EEFBF4DFE81 /* Pods_FaceDetectorBasedMLKit.framework in Frameworks */,
+				B99B38DA2C918FE700472A31 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +137,18 @@
 		0B2E7B9C66EE7B267055E327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B99B38ED2C91902A00472A31 /* Social.framework */,
+				B99B38EB2C91902400472A31 /* Photos.framework */,
+				B99B38E92C91901D00472A31 /* Foundation.framework */,
+				B99B38E72C91901700472A31 /* UIKit.framework */,
+				B99B38E52C91900F00472A31 /* QuartzCore.framework */,
+				B99B38E32C91900900472A31 /* CoreVideo.framework */,
+				B99B38E12C91900200472A31 /* CoreMedia.framework */,
+				B99B38DF2C918FFB00472A31 /* CoreImage.framework */,
+				B99B38DD2C918FF400472A31 /* CoreGraphics.framework */,
+				B99B38DB2C918FEE00472A31 /* AVFoundation.framework */,
+				B99B38D92C918FE700472A31 /* AssetsLibrary.framework */,
+				B99B38D72C918FE000472A31 /* Accelerate.framework */,
 				80A1102CCC25F1A7CAB4E0B6 /* Pods_FaceDetectorBasedMLKit.framework */,
 			);
 			name = Frameworks;
@@ -121,6 +175,7 @@
 		B91FE5372C5A2D8E00A6F768 /* FaceDetectorBasedMLKit */ = {
 			isa = PBXGroup;
 			children = (
+				B99B38D02C918B7F00472A31 /* opencv */,
 				B97FB8DA2C746E410041CA7C /* HWThrottle */,
 				B91FE5582C5A2E4800A6F768 /* FaceDetector */,
 				B91FE5382C5A2D8E00A6F768 /* AppDelegate.h */,
@@ -154,6 +209,8 @@
 				B942A2B92C6EF7D000CDCB2C /* YDFaceErrorView.h */,
 				B942A2BA2C6EF7D100CDCB2C /* YDFaceErrorView.m */,
 				B942A2B82C6EF7D000CDCB2C /* YDFaceErrorView.xib */,
+				B99B38D22C918BC300472A31 /* ImageDetector.h */,
+				B99B38D32C918BC300472A31 /* ImageDetector.mm */,
 			);
 			path = FaceDetector;
 			sourceTree = "<group>";
@@ -200,6 +257,14 @@
 				B997DE272C6B2A8A00D7E13D /* fd_t2@3x.png */,
 			);
 			path = assets;
+			sourceTree = "<group>";
+		};
+		B99B38D02C918B7F00472A31 /* opencv */ = {
+			isa = PBXGroup;
+			children = (
+				B99B38D52C918F1B00472A31 /* opencv2.framework */,
+			);
+			path = opencv;
 			sourceTree = "<group>";
 		};
 		CF867E44B7F23B482BF220D4 /* Pods */ = {
@@ -362,6 +427,7 @@
 				B91FE5592C5A2E4800A6F768 /* FaceViewController.m in Sources */,
 				B997DE082C6B26D500D7E13D /* MaskView.m in Sources */,
 				B91FE54B2C5A2D9100A6F768 /* main.m in Sources */,
+				B99B38D42C918BC300472A31 /* ImageDetector.mm in Sources */,
 				B91FE53D2C5A2D8E00A6F768 /* SceneDelegate.m in Sources */,
 				B91FE55F2C5A2EED00A6F768 /* ResultViewController.m in Sources */,
 				B97FB8DB2C746E410041CA7C /* HWDebounce.m in Sources */,
@@ -517,6 +583,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BJTDMP87P7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaceDetectorBasedMLKit/opencv",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "此APP需要请求获取您的相机权限";
@@ -549,6 +619,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BJTDMP87P7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaceDetectorBasedMLKit/opencv",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FaceDetectorBasedMLKit/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "此APP需要请求获取您的相机权限";
