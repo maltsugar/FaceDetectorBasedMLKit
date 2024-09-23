@@ -45,7 +45,7 @@
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fd_face.png" translatesAutoresizingMaskIntoConstraints="NO" id="eQT-uc-eas">
-                                            <rect key="frame" x="0.0" y="46.000000000000014" width="294.33333333333331" height="248.33333333333337"/>
+                                            <rect key="frame" x="-29.333333333333343" y="6.3333333333333428" width="353" height="298"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="eQT-uc-eas" secondAttribute="height" multiplier="147:124" id="Fgj-i8-o0o"/>
                                             </constraints>
@@ -59,8 +59,8 @@
                                         <constraint firstAttribute="bottom" secondItem="b6G-g6-umZ" secondAttribute="bottom" id="Sh7-jY-OOX"/>
                                         <constraint firstAttribute="trailing" secondItem="BtE-gC-xUv" secondAttribute="trailing" id="a62-yV-Rji"/>
                                         <constraint firstAttribute="width" secondItem="NJW-jl-vW6" secondAttribute="height" multiplier="1:1" id="fS1-in-uPn"/>
-                                        <constraint firstItem="eQT-uc-eas" firstAttribute="width" secondItem="NJW-jl-vW6" secondAttribute="width" id="h3w-xW-I5P"/>
-                                        <constraint firstAttribute="bottom" secondItem="eQT-uc-eas" secondAttribute="bottom" id="htd-A7-UKk"/>
+                                        <constraint firstItem="eQT-uc-eas" firstAttribute="width" secondItem="NJW-jl-vW6" secondAttribute="width" multiplier="1.2" id="h3w-xW-I5P"/>
+                                        <constraint firstAttribute="bottom" secondItem="eQT-uc-eas" secondAttribute="bottom" constant="-10" id="htd-A7-UKk"/>
                                         <constraint firstItem="eQT-uc-eas" firstAttribute="centerX" secondItem="NJW-jl-vW6" secondAttribute="centerX" id="tFj-gm-Vb7"/>
                                         <constraint firstItem="b6G-g6-umZ" firstAttribute="leading" secondItem="NJW-jl-vW6" secondAttribute="leading" id="x0y-yg-1fH"/>
                                         <constraint firstItem="b6G-g6-umZ" firstAttribute="top" secondItem="NJW-jl-vW6" secondAttribute="top" id="xQ7-3o-D5N"/>

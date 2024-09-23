@@ -73,7 +73,7 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     if (!_staySeconds) {
         _staySeconds = 0.5;
-    }
+    } 
     if (!_timeoutSeconds) {
         _timeoutSeconds = 60;
     }
@@ -99,9 +99,9 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     
     // zgytest
-//    _maskView = [MaskView maskView];
-//    [self.view addSubview:_maskView];
-//    _maskView.frame = self.view.bounds;
+    _maskView = [MaskView maskView];
+    [self.view addSubview:_maskView];
+    _maskView.frame = self.view.bounds;
     
     [self setUpPreviewOverlayView];
     [self setUpAnnotationOverlayView];
@@ -278,10 +278,10 @@ static const CGFloat MLKSmallDotRadius = 4.0;
             [strongSelf.taskRunner call];
             
             // zgytest
-            [UIUtilities addRectangle:standardizedRect
-                               toView:strongSelf.annotationOverlayView
-                                color:UIColor.greenColor];
-            [strongSelf addContoursForFace:face width:width height:height];
+//            [UIUtilities addRectangle:standardizedRect
+//                               toView:strongSelf.annotationOverlayView
+//                                color:UIColor.greenColor];
+//            [strongSelf addContoursForFace:face width:width height:height];
         }
     });
 }
@@ -325,11 +325,11 @@ static const CGFloat MLKSmallDotRadius = 4.0;
     
     CGFloat sw = CGRectGetWidth(UIScreen.mainScreen.bounds);
     CGFloat sh = CGRectGetHeight(UIScreen.mainScreen.bounds);
-    CGFloat r0 = 0.85;
-    CGFloat r1 = 0.3;
+    CGFloat r0 = 1.1;
+    CGFloat r1 = 0.4;
     
-    CGFloat minYRatio = 0.3;
-    CGFloat maxYRatio = 0.7;
+    CGFloat minYRatio = 0.4;
+    CGFloat maxYRatio = 0.6;
     
 //    if ([self isBigScreen]) {
 //        r0 = 0.75;
@@ -742,24 +742,24 @@ static const CGFloat MLKSmallDotRadius = 4.0;
 }
 
 - (void)setUpPreviewOverlayView {
-    [_cameraView addSubview:_previewOverlayView];
-    [NSLayoutConstraint activateConstraints:@[
-        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
-        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
-        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
-        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
-    ]];
+//    [_cameraView addSubview:_previewOverlayView];
+//    [NSLayoutConstraint activateConstraints:@[
+//        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_cameraView.centerYAnchor],
+//        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_cameraView.centerXAnchor],
+//        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_cameraView.leadingAnchor],
+//        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_cameraView.trailingAnchor]
+//    ]];
     
     
   
     // zgytest
-//    [_maskView.previewView  addSubview:_previewOverlayView];
-//    [NSLayoutConstraint activateConstraints:@[
-//        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_maskView.previewView.centerYAnchor],
-//        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_maskView.previewView.centerXAnchor],
-//        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_maskView.previewView.leadingAnchor],
-//        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_maskView.previewView.trailingAnchor]
-//    ]];
+    [_maskView.previewView  addSubview:_previewOverlayView];
+    [NSLayoutConstraint activateConstraints:@[
+        [_previewOverlayView.centerYAnchor constraintEqualToAnchor:_maskView.previewView.centerYAnchor],
+        [_previewOverlayView.centerXAnchor constraintEqualToAnchor:_maskView.previewView.centerXAnchor],
+        [_previewOverlayView.leadingAnchor constraintEqualToAnchor:_maskView.previewView.leadingAnchor],
+        [_previewOverlayView.trailingAnchor constraintEqualToAnchor:_maskView.previewView.trailingAnchor]
+    ]];
     
     
 }
