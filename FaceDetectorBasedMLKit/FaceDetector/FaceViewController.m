@@ -405,10 +405,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                             }
                             
                             [weakSelf resetScreen];
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [weakSelf cancelStayTimer];
-                                [weakSelf cancelTimeoutTimer];
-                            });
+                            [weakSelf cancelStayTimer];
+                            [weakSelf cancelTimeoutTimer];
                         });
                         
                     }
@@ -508,7 +506,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                 if (seconds == weakSelf.timeoutSeconds) {
                     [weakSelf stopSession];
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
                         if (weakSelf.failureBlock) {
                             NSError *err = [NSError errorWithDomain:@"facedector.sjgy" code:100 userInfo:@{NSLocalizedDescriptionKey: @"检测超时"}];
                             weakSelf.failureBlock(err);
@@ -517,9 +516,8 @@ static const CGFloat MLKSmallDotRadius = 4.0;
                         weakSelf.errorView.hidden = NO;
                         weakSelf.errorView.tipLab.text = @"已超时，请重试！";
                         [weakSelf resetScreen];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [weakSelf cancelTimeoutTimer];
-                        });
+                        [weakSelf cancelTimeoutTimer];
+                        
                     });
                 }
                 

@@ -1,0 +1,2 @@
+https://opencv.org/releases/
+OpenCV – 4.10.0   2024-06-03
